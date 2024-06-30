@@ -18,8 +18,8 @@ void add_student()
 
     printf("Enter student name: ");
     scanf("%s", student.student_name);
-    printf("Enter student row number: ");
-    scanf("%d", &student.student_row_number);
+
+    student.student_row_number = table_length + 1;
     printf("Enter student grade: ");
     scanf("%d", &student.student_grade);
     if (student.student_grade >= passing_threshold)
@@ -62,10 +62,30 @@ int main()
             printf("Add Student\n");
 
             add_student();
-            printf("\nStudent added\n");
+            printf("\nStudent added: ROW %d\n", table_length + 1);
 
             fprintf(fptr, "%s\t%d\t%d\t%s\n", students[table_length].student_name, students[table_length].student_row_number, students[table_length].student_grade, students[table_length].student_remark);
             table_length++;
+        }
+        /* remove student action */
+        else if (choice == 2)
+        {
+            printf("Remove Student\n");
+            int row_number;
+            printf("Enter row number of student to remove: ");
+            scanf("%d", &row_number);
+            if (row_number > table_length+1)
+            {
+                printf("Student not found\n");
+            }
+            else
+            {
+                for (int i = row_number; i < table_length; i++)
+                {
+                    students[i] = students[i + 1];
+                }
+                table_length--;
+            }
         }
 
     } while (choice != 5);
