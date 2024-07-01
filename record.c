@@ -42,7 +42,7 @@ int main()
 
     printf("Hello, kindly enter your firstname\n");
 
-    scanf("%99s", firstname);
+    scanf("%s", firstname);
 
     printf("Hello %s\n", firstname);
 
