@@ -12,6 +12,7 @@ struct gradeStructure
 struct gradeStructure students[100];
 int table_length = 0;
 int passing_threshold = 40;
+
 void add_student()
 {
     struct gradeStructure student;
@@ -32,6 +33,23 @@ void add_student()
     }
     students[table_length] = student;
 }
+
+void list_students()
+{
+    if (table_length == 0) {
+        printf("No students listed.\n");
+    } else {
+        printf("Listing students:\n");
+        for (int i = 0; i < table_length; i++) {
+            printf("Row: %d, Name: %s, Grade: %d, Remark: %s\n",
+                   students[i].student_row_number,
+                   students[i].student_name,
+                   students[i].student_grade,
+                   students[i].student_remark);
+        }
+    }
+}
+
 int main()
 {
     FILE *fptr;
@@ -74,7 +92,7 @@ int main()
             int row_number;
             printf("Enter row number of student to remove: ");
             scanf("%d", &row_number);
-            if (row_number > table_length+1)
+            if (row_number > table_length + 1)
             {
                 printf("Student not found\n");
             }
@@ -85,7 +103,12 @@ int main()
                     students[i] = students[i + 1];
                 }
                 table_length--;
+                printf("Student removed\n");
             }
+        }
+        /* list students action */
+        else if (choice == 3) {
+            list_students();
         }
 
     } while (choice != 5);
