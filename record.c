@@ -12,6 +12,8 @@ struct gradeStructure
 struct gradeStructure students[100];
 int table_length = 0;
 int passing_threshold = 40;
+
+// Function for adding student record
 void add_student()
 {
     struct gradeStructure student;
@@ -32,6 +34,26 @@ void add_student()
     }
     students[table_length] = student;
 }
+
+// Function for removing student record
+void remove_student(int row_number)
+{
+    
+            if (row_number > table_length+1)
+            {
+                printf("Student not found\n");
+            }
+            else
+            {
+                for (int i = row_number; i < table_length; i++)
+                {
+                    students[i] = students[i + 1];
+                }
+                table_length--;
+            }
+}
+
+// Main Program
 int main()
 {
     FILE *fptr;
@@ -56,7 +78,7 @@ int main()
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        /* add  student action */
+        /* add  student option */
         if (choice == 1)
         {
             printf("Add Student\n");
@@ -67,25 +89,14 @@ int main()
             fprintf(fptr, "%s\t%d\t%d\t%s\n", students[table_length].student_name, students[table_length].student_row_number, students[table_length].student_grade, students[table_length].student_remark);
             table_length++;
         }
-        /* remove student action */
+        /* remove student option */
         else if (choice == 2)
         {
             printf("Remove Student\n");
             int row_number;
             printf("Enter row number of student to remove: ");
             scanf("%d", &row_number);
-            if (row_number > table_length+1)
-            {
-                printf("Student not found\n");
-            }
-            else
-            {
-                for (int i = row_number; i < table_length; i++)
-                {
-                    students[i] = students[i + 1];
-                }
-                table_length--;
-            }
+            remove_student(row_number);
         }
 
     } while (choice != 5);
