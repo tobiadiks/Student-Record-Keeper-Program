@@ -13,7 +13,6 @@ struct gradeStructure students[100];
 int table_length = 0;
 int passing_threshold = 40;
 
-// Function for adding student record
 void add_student()
 {
     struct gradeStructure student;
@@ -54,6 +53,23 @@ void remove_student(int row_number)
 }
 
 // Main Program
+
+void list_students()
+{
+    if (table_length == 0) {
+        printf("No students listed.\n");
+    } else {
+        printf("Listing students:\n");
+        for (int i = 0; i < table_length; i++) {
+            printf("Row: %d, Name: %s, Grade: %d, Remark: %s\n",
+                   students[i].student_row_number,
+                   students[i].student_name,
+                   students[i].student_grade,
+                   students[i].student_remark);
+        }
+    }
+}
+
 int main()
 {
     FILE *fptr;
@@ -97,6 +113,10 @@ int main()
             printf("Enter row number of student to remove: ");
             scanf("%d", &row_number);
             remove_student(row_number);
+        }
+        /* list students action */
+        else if (choice == 3) {
+            list_students();
         }
 
     } while (choice != 5);
