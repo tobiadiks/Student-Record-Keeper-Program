@@ -55,7 +55,7 @@ void list_students()
     }
 }
 
-void save_students_to_file(const char* filename)
+void save_students_to_file(const char *filename)
 {
     FILE *fptr = fopen(filename, "w");
     if (fptr == NULL)
@@ -77,7 +77,7 @@ void save_students_to_file(const char* filename)
     printf("File saved.\n");
 }
 
-void load_students_from_file(const char* filename)
+void load_students_from_file(const char *filename)
 {
     FILE *fptr = fopen(filename, "r");
     if (fptr == NULL)
